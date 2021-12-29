@@ -52,6 +52,7 @@
 
                                   $sql = 'SELECT * FROM `users` ORDER BY `id` DESC';
                                   $query = $pdo->query($sql);
+
                                   while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                       echo "
                                 <tr>
@@ -67,10 +68,9 @@
                                     </td>
                                     <td>
 
-                                    <div id='ison' class='isons'>{$row['stat']}</div>
-                                        <i id='online' class='fas fa-sm fa-circle' style='display: none; color: #51cf66;'></i>
-
-                                        <i id='offline' class='fas fa-sm fa-circle' style='display: none; color: #8f8f8f;'></i>
+                                    <div class='ison'>
+                                    ".(($row['stat']) == 'Active'? "<i id='online' class='fas fa-sm fa-circle' style='color: #51cf66;'></i>": "<i id='offline' class='fas fa-sm fa-circle' style='color: #8f8f8f;'></i>")."
+                                    </div>
 
                                     </td>
 
@@ -211,19 +211,6 @@
     </div>
   </div>
 </div>
-
-<script>
-$('#ison').each(function() {
-if($(this).text() == 'Active'){
-  $('#online').show();
-}else{
-  $('#offline').show();
-}
-});
-
-
-</script>
-
 
 
 </body>
